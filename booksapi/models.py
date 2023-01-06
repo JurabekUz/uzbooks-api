@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
 
 class Book(models.Model):
     title = models.CharField('Nomi',max_length=50)
@@ -19,6 +21,7 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
     book = models.ForeignKey(Book,on_delete=models.CASCADE,related_name='comment',verbose_name='Kitob')
     name = models.CharField('Ism',max_length=50)
@@ -30,6 +33,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.book}"
+
 
 class BookSource(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='source')
